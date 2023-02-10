@@ -4,7 +4,7 @@ import { checkGuess } from "../../game-helpers";
 
 interface ResultsProps {
   data: string[];
-  answer: string;
+  answer?: string;
 }
 
 interface CheckedGuess {

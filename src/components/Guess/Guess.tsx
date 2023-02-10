@@ -2,8 +2,9 @@ import React, { ChangeEvent, FC, FormEvent, useState } from "react";
 
 interface GuessProps {
   onSubmit: (value: string) => void;
+  disabled?: boolean;
 }
-const Guess: FC<GuessProps> = ({ onSubmit }) => {
+const Guess: FC<GuessProps> = ({ onSubmit, disabled }) => {
   const [text, setText] = useState("");
 
   const onGuessChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -16,7 +17,6 @@ const Guess: FC<GuessProps> = ({ onSubmit }) => {
   const onFormSubmit = (e: FormEvent) => {
     e.preventDefault();
     onSubmit(text);
-    console.log(text);
     setText("");
   };
 
@@ -31,6 +31,7 @@ const Guess: FC<GuessProps> = ({ onSubmit }) => {
         maxLength={5}
         minLength={5}
         pattern="^[A-Z]{5}$"
+        disabled={disabled}
       />
     </form>
   );
