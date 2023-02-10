@@ -7,15 +7,14 @@ const Guess: FC<GuessProps> = ({ onSubmit }) => {
   const [text, setText] = useState("");
 
   const onGuessChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value.toUpperCase());
+    const value = e.target.value.toUpperCase();
+    if (/^[A-Z]{0,5}$/.test(value)) {
+      setText(value);
+    }
   };
 
   const onFormSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (text.length !== 5) {
-      window.alert("Your guess should be a word with 5 letters");
-      return;
-    }
     onSubmit(text);
     console.log(text);
     setText("");
@@ -29,6 +28,9 @@ const Guess: FC<GuessProps> = ({ onSubmit }) => {
         type="text"
         value={text}
         onChange={onGuessChange}
+        maxLength={5}
+        minLength={5}
+        pattern="^[A-Z]{5}$"
       />
     </form>
   );
