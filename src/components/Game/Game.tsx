@@ -19,7 +19,7 @@ const Game = () => {
   };
   return (
     <>
-      <Results data={guesses} />
+      <Results data={guesses} answer={answer} />
       <Guess onSubmit={onSubmit} />
     </>
   );
