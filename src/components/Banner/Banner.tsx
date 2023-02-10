@@ -6,13 +6,18 @@ interface BannerProps {
   match?: boolean;
   answer?: string;
   tries: number;
+  onRestart?: () => void;
 }
 
-const Banner: FC<BannerProps> = ({ match, answer, tries }) => {
+const Banner: FC<BannerProps> = ({ match, answer, tries, onRestart }) => {
   if (match === undefined) {
     return <></>;
   }
-  return match ? <Win tries={tries} /> : <Lose answer={answer} />;
+  return match ? (
+    <Win tries={tries} onRestart={onRestart} />
+  ) : (
+    <Lose answer={answer} onRestart={onRestart} />
+  );
 };
 
 export default Banner;
